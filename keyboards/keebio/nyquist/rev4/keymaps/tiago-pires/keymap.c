@@ -38,6 +38,7 @@ enum custom_keycodes {
 #define ENTCTL RCTL_T(KC_ENT)
 #define TLDCTL LCTL_T(KC_TILDE)
 #define ENTSFT RSFT_T(KC_ENT)
+#define ALTWINX LALT_T(LCMD(KC_W))
 #define SLHSFT MT(MOD_LSFT, KC_SLSH)
 #define UNDSFT MT(MOD_LSFT, KC_UNDS)
 
@@ -45,7 +46,6 @@ enum custom_keycodes {
 #define PASTE LCMD(KC_V)
 #define CUT LCMD(KC_X)
 #define SLCTALL LCMD(KC_A)
-#define WBFPRV LCMD(LSFT(KC_P))
 #define UNDO LCMD(KC_Z)
 #define REDO LCMD(LSFT(KC_Z))
 #define CMDTAB LCMD(KC_TAB)
@@ -54,34 +54,51 @@ enum custom_keycodes {
 #define SAVE LCMD(KC_S)
 #define GROUP LCMD(KC_G)
 #define SCRSHOT LCMD(LSFT(KC_4))
+#define SEARCH LCMD(KC_F)
+
 #define INSP LCMD(LSFT(KC_C))
+#define CHRMOB LCMD(LSFT(KC_M))
 #define REFRSH LCMD(KC_R)
+#define INSPX KC_F12
+
 #define FIGGRD KC_G
-#define FIGMUI LCMD(KC_BSLS)
 #define FIGSLT KC_V
+#define FIGDEV KC_D
+#define FIGMUI LCMD(KC_BSLS)
+#define QUITAPP LCMD(KC_Q)
+
 #define DSGPAN KC_SPC
+#define WFFPRV LCMD(LSFT(KC_P))
+#define WFELMS LGUI_T(KC_Z)
 #define WFDSKT KC_1
 #define WFTABL KC_2
 #define WFMOBL KC_3
-#define WFMOBP KC_3
+#define WFMOBP KC_4
+#define WFELMT KC_Z
+#define WFMVUP LCMD(KC_UP)
+#define WFMVDW LCMD(KC_DOWN)
+#define RAYCAST LCMD(KC_SPC)
+#define DUPLICT LCMD(KC_D)
+#define CLSEWIN LCMD(KC_W)
+#define ALTCDEL LALT_T(LCMD(KC_BSPC))
 
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 [_DVORAK] = LAYOUT_ortho_5x12(
-  WFMOBP,   WFMOBL,   WFTABL,   WFDSKT,   KC_1,     KC_PERC,            KC_CIRC,  KC_AMPR,  KC_ASTR,  KC_LPRN,  KC_RPRN,  KC_BSPC,
+  WFMOBP,   WFMOBL,   WFTABL,   WFDSKT,   DSGPAN,   INSPX,              KC_CIRC,  KC_AMPR,  KC_ASTR,  KC_LPRN,  KC_RPRN,  KC_BSPC,
   KC_GRV,   KC_QUOT,  KC_COMM,  KC_DOT,   KC_P,     KC_Y,               KC_F,     KC_G,     KC_C,     KC_R,     KC_L,     KC_BSPC,
   TABCTL,   KC_A,     KC_O,     KC_E,     KC_U,     KC_I,               KC_D,     KC_H,     KC_T,     KC_N,     KC_S,     ENTCTL,
   BKSSFT,   KC_SCLN,  KC_Q,     KC_J,     KC_K,     KC_X,               KC_B,     KC_M,     KC_W,     KC_V,     KC_Z,     BKSSFT,
-  DSGPAN,   KC_VOLD,  KC_VOLU,  KC_LALT,  ESCCMD,   PLYSHT,             SPCSYM,   ESCCMD,   KC_LALT,  KC_DOWN,  KC_UP,    KC_RGHT
+  FIGMUI,   KC_VOLD,  KC_VOLU,  ALTCDEL,  ESCCMD,   PLYSHT,             SPCSYM,   ESCCMD,   KC_LALT,  KC_DOWN,  KC_UP,    KC_RGHT
 ),
 
 [_SHORTCUTS] = LAYOUT_ortho_5x12(
-  FIGSLT,   DSGPAN,   ZOOMOUT,  ZOOMIN,   KC_WFWD,  KC_F6,              KC_F7,    KC_F8,    KC_F9,    KC_F10,   KC_F11,   KC_F12,
-  KC_BSPC,  FIGMUI,   REFRSH,   FIGGRD,   SCRSHOT,  FIGSLT,             _______,  KC_PIPE,  KC_LCBR,  KC_RCBR,  KC_PLUS,  KC_BSPC,
+  FIGDEV,   FIGGRD,   ZOOMOUT,  ZOOMIN,   GROUP,    QUITAPP,            KC_F7,    KC_F8,    KC_F9,    KC_F10,   KC_F11,   KC_F12,
+  KC_BSPC,  SEARCH,   REFRSH,   SCRSHOT,  CHRMOB,   DUPLICT,            _______,  KC_PIPE,  KC_LCBR,  KC_RCBR,  KC_PLUS,  KC_BSPC,
   ENTCTL,   SLCTALL,  INSP,     COPY,     PASTE,    CUT,                KC_CIRC,  KC_AMPR,  KC_LPRN,  KC_RPRN,  KC_SLSH,  MINCTL,
-  REDO,     UNDO,     KC_LEFT,  KC_DOWN,  KC_UP,    KC_RIGHT,           _______, _______,   KC_LBRC,  KC_RBRC,  KC_EQL,   KC_UNDS,
-  WBFPRV,   KC_LGUI,  KC_D,     KC_LALT,  ESCCMD,   KC_LGUI,            _______, _______,   _______,  _______,  _______,  _______
+  REDO,     UNDO,     KC_LEFT,  KC_DOWN,  KC_UP,    KC_RIGHT,           _______,  _______,  KC_LBRC,  KC_RBRC,  KC_EQL,   KC_UNDS,
+  WFFPRV,   WFELMS,   FIGSLT,   ALTWINX,  ESCCMD,   KC_LGUI,            RAYCAST,  ESCCMD,   KC_LALT,  _______,  _______,  _______
 ),
 
 [_SYMBOLS] = LAYOUT_ortho_5x12(
@@ -89,7 +106,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_TILDE, KC_DQUO,  KC_LABK,  KC_RABK,  _______,  _______,            _______,  KC_7,     KC_8,     KC_9,     KC_0,     _______,
   KC_QUES,  KC_EXLM,  KC_AT,    KC_HASH,  KC_DLR,   KC_PERC,            _______,  KC_4,     KC_5,     KC_6,     KC_MINS,  ZERCTL,
   ENTSFT,   KC_COLON, KC_LEFT,  KC_DOWN,  KC_UP,    KC_RIGHT,           KC_0,     KC_1,     KC_2,     KC_3,     KC_EQL,   _______,
-  _______,  KC_VOLD,  KC_VOLU,  _______,  _______,  _______,            _______,  _______,  KC_0,     _______,  _______,  _______
+  _______,  KC_VOLD,  KC_VOLU,  _______,  _______,  _______,            _______,  ESCCMD,   KC_0,     _______,  _______,  _______
 ),
 
 [_ADJUST] =  LAYOUT_ortho_5x12(
